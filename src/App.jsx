@@ -44,7 +44,7 @@ export default function App() {
           <iframe
             title="Golf Course Map"
             className="w-full h-96 rounded-xl shadow"
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3154.867..."
+            src="https://www.google.com/maps/place/Thanksgiving+Point+Golf+Club/@40.4287685,-111.9047997,16z/data=!4m14!1m7!3m6!1s0x8752802de9691605:0x28f22a92b2601511!2sThanksgiving+Point+Golf+Club!8m2!3d40.4287644!4d-111.9022248!16s%2Fm%2F04zh_t9!3m5!1s0x8752802de9691605:0x28f22a92b2601511!8m2!3d40.4287644!4d-111.9022248!16s%2Fm%2F04zh_t9?entry=ttu&g_ep=EgoyMDI1MTExMi4wIKXMDSoASAFQAw%3D%3D"
             loading="lazy"
           ></iframe>
         </div>
