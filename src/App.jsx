@@ -70,7 +70,7 @@ export default function App() {
             placeholder="Age"
             className="w-full border p-3 rounded"
           />
-          <button className="w-full bg-gray-800 hover:bg-green-700 text-white p-3 rounded text-lg">
+          <button className="w-full bg-green-600 hover:bg-green-700 text-white p-3 rounded text-lg">
             Submit Registration
           </button>
         </form>
