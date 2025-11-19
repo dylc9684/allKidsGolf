@@ -2,13 +2,17 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
+import axios from "axios";
+import Header from './components/Header';
+import RegistrationForm from './components/RegistrationSection';
 
 export default function App() {
   return (
     <div className="font-sans text-gray-800">
+      <Header />
       {/* HERO */}
       <section
-        className="h-[85vh] bg-cover bg-center flex items-center justify-center text-white"
+        className="h-[85vh] bg-cover bg-center flex items-center justify-center text-white mt-20"
         style={{ backgroundImage: "url('https://images.unsplash.com/photo-1521412644187-c49fa049e84d')" }}
       >
         <div className="bg-black/40 p-8 rounded-xl">
@@ -18,7 +22,7 @@ export default function App() {
       </section>
 
       {/* DETAILS */}
-      <section className="max-w-5xl mx-auto py-16 px-6">
+      <section id="details" className="max-w-5xl mx-auto py-16 px-6">
         <h2 className="text-3xl font-bold mb-6 text-center">Tournament Details</h2>
 
         <div className="grid md:grid-cols-3 gap-8">
@@ -38,7 +42,7 @@ export default function App() {
       </section>
 
       {/* MAP */}
-      <section className="bg-gray-100 py-16">
+      <section id="location" className="bg-gray-100 py-16">
         <h2 className="text-3xl font-bold mb-4 text-center">Location</h2>
         <div className="max-w-4xl mx-auto px-6">
           <iframe
@@ -51,33 +55,10 @@ export default function App() {
       </section>
 
       {/* REGISTRATION FORM */}
-      <section className="max-w-3xl mx-auto py-16 px-6">
-        <h2 className="text-3xl font-bold mb-6 text-center">Register Now</h2>
-
-        <form className="space-y-4 shadow p-8 rounded-xl bg-white">
-          <input
-            type="text"
-            placeholder="Full Name"
-            className="w-full border p-3 rounded"
-          />
-          <input
-            type="email"
-            placeholder="Email"
-            className="w-full border p-3 rounded"
-          />
-          <input
-            type="number"
-            placeholder="Age"
-            className="w-full border p-3 rounded"
-          />
-          <button className="w-full bg-green-600 hover:bg-green-700 text-white p-3 rounded text-lg">
-            Submit Registration
-          </button>
-        </form>
-      </section>
+      <RegistrationForm />
 
       {/* VIDEO */}
-      <section className="bg-gray-900 text-white py-16">
+      <section id="videos" className="bg-gray-900 text-white py-16">
         <h2 className="text-3xl font-bold text-center mb-6">Highlights From Last Year</h2>
         <div className="max-w-4xl mx-auto px-6">
           <div className="aspect-video">
@@ -92,7 +73,7 @@ export default function App() {
       </section>
 
       {/* SPONSORS */}
-      <section className="max-w-5xl mx-auto py-16 px-6">
+      <section id="sponsors" className="max-w-5xl mx-auto py-16 px-6">
         <h2 className="text-3xl font-bold mb-8 text-center">Our Sponsors</h2>
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
