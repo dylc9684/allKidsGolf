@@ -4,10 +4,7 @@ import { Link } from "react-router-dom";
 export default function Header({ pageMenus = [] }) {
   const [open, setOpen] = useState(false);
 
-  const defaultMenus = [
-    { label: "Register", to: "/register", type: "link" },
-    { label: "Login", to: "/login", type: "link" }
-  ];
+  const defaultMenus = [];
 
   // Normalize menus (pageMenus may use href or link)
   const normalize = (item) => ({
