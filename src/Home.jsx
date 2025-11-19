@@ -8,21 +8,21 @@ import RegistrationForm from './components/RegistrationSection';
 import NavBar from './components/NavBar';
 import { href } from 'react-router-dom';
 export default function Home() {
-  const pageMenus = [{
-    href: '#details',
-    label: 'Details'
-  }, {
-    href: '#location',
-    label: 'Location'
-  }, {
-    href: '#videos',
-    label: 'Highlights'
-  }, {
-    href: '#sponsors',
-    label: 'Sponsors'
-  }, {
-    label: "Login", to: "/login"
-  }]
+  const isLoggedIn = !!localStorage.getItem("jwt");
+
+  const pageMenus = [
+    { href: "#details", label: "Details" },
+    { href: "#location", label: "Location" },
+    { href: "#videos", label: "Highlights" },
+    { href: "#sponsors", label: "Sponsors" },
+    !isLoggedIn
+      ? { label: "Login", to: "/login" }
+      : { label: "Logout", action: () => {
+          localStorage.removeItem("jwt");
+          window.location.href = "/"; // reload homepage
+        } },
+  ].filter(Boolean);
+
   return (
     <div className="font-sans text-gray-800">
       <Header pageMenus={pageMenus} />

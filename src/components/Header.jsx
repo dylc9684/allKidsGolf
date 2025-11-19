@@ -4,25 +4,9 @@ import { Link } from "react-router-dom";
 export default function Header({ pageMenus = [] }) {
   const [open, setOpen] = useState(false);
 
-  const defaultMenus = [];
-
-  // Normalize menus (pageMenus may use href or link)
-  const normalize = (item) => ({
-    label: item.label,
-    to: item.to,
-    href: item.href,
-    type: item.to ? "link" : "anchor"
-  });
-
-  const combinedMenus = [
-    ...pageMenus.map(normalize),
-    ...defaultMenus
-  ];
-
   return (
     <header className="fixed top-0 left-0 w-full bg-white shadow z-50">
       <nav className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-
         {/* Logo */}
         <div className="text-2xl font-bold text-green-700">
           <Link to="/">Teen Golf 2025</Link>
@@ -30,25 +14,32 @@ export default function Header({ pageMenus = [] }) {
 
         {/* Desktop Menu */}
         <div className="hidden md:flex items-center gap-8 text-gray-800 font-medium">
-          {combinedMenus.map((item, idx) =>
-            item.type === "link" ? (
-              <Link
-                key={idx}
-                to={item.to}
-                className="hover:text-green-600"
-              >
-                {item.label}
-              </Link>
-            ) : (
-              <a
-                key={idx}
-                href={item.href}
-                className="hover:text-green-600"
-              >
-                {item.label}
-              </a>
-            )
-          )}
+          {pageMenus.map((item, idx) => {
+            if (item.to) {
+              return (
+                <Link key={idx} to={item.to} className="hover:text-green-600">
+                  {item.label}
+                </Link>
+              );
+            } else if (item.href) {
+              return (
+                <a key={idx} href={item.href} className="hover:text-green-600">
+                  {item.label}
+                </a>
+              );
+            } else if (item.action) {
+              return (
+                <button
+                  key={idx}
+                  onClick={item.action}
+                  className="hover:text-green-600 font-medium"
+                >
+                  {item.label}
+                </button>
+              );
+            }
+            return null;
+          })}
         </div>
 
         {/* Mobile Menu Button */}
@@ -61,9 +52,17 @@ export default function Header({ pageMenus = [] }) {
             viewBox="0 0 24 24"
           >
             {open ? (
-              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M6 18L18 6M6 6l12 12"
+              />
             ) : (
-              <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M4 6h16M4 12h16M4 18h16"
+              />
             )}
           </svg>
         </button>
@@ -72,27 +71,45 @@ export default function Header({ pageMenus = [] }) {
       {/* Mobile Dropdown */}
       {open && (
         <div className="md:hidden bg-white border-t shadow">
-          {combinedMenus.map((item, idx) =>
-            item.type === "link" ? (
-              <Link
-                key={idx}
-                to={item.to}
-                className="block px-6 py-3 border-b hover:bg-gray-100"
-                onClick={() => setOpen(false)}
-              >
-                {item.label}
-              </Link>
-            ) : (
-              <a
-                key={idx}
-                href={item.href}
-                className="block px-6 py-3 border-b hover:bg-gray-100"
-                onClick={() => setOpen(false)}
-              >
-                {item.label}
-              </a>
-            )
-          )}
+          {pageMenus.map((item, idx) => {
+            if (item.to) {
+              return (
+                <Link
+                  key={idx}
+                  to={item.to}
+                  className="block px-6 py-3 border-b hover:bg-gray-100"
+                  onClick={() => setOpen(false)}
+                >
+                  {item.label}
+                </Link>
+              );
+            } else if (item.href) {
+              return (
+                <a
+                  key={idx}
+                  href={item.href}
+                  className="block px-6 py-3 border-b hover:bg-gray-100"
+                  onClick={() => setOpen(false)}
+                >
+                  {item.label}
+                </a>
+              );
+            } else if (item.action) {
+              return (
+                <button
+                  key={idx}
+                  onClick={() => {
+                    item.action();
+                    setOpen(false);
+                  }}
+                  className="block w-full text-left px-6 py-3 border-b hover:bg-gray-100"
+                >
+                  {item.label}
+                </button>
+              );
+            }
+            return null;
+          })}
         </div>
       )}
     </header>
