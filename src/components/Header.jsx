@@ -1,23 +1,57 @@
-import React, {useState} from "react";
-function Header() {
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+
+export default function Header({ pageMenus = [] }) {
   const [open, setOpen] = useState(false);
+
+  const defaultMenus = [
+    { label: "Register", to: "/register", type: "link" },
+    { label: "Login", to: "/login", type: "link" }
+  ];
+
+  // Normalize menus (pageMenus may use href or link)
+  const normalize = (item) => ({
+    label: item.label,
+    to: item.to,
+    href: item.href,
+    type: item.to ? "link" : "anchor"
+  });
+
+  const combinedMenus = [
+    ...pageMenus.map(normalize),
+    ...defaultMenus
+  ];
 
   return (
     <header className="fixed top-0 left-0 w-full bg-white shadow z-50">
       <nav className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-        
-        {/* LOGO */}
+
+        {/* Logo */}
         <div className="text-2xl font-bold text-green-700">
-          Teen Golf 2025
+          <Link to="/">Teen Golf 2025</Link>
         </div>
 
         {/* Desktop Menu */}
         <div className="hidden md:flex items-center gap-8 text-gray-800 font-medium">
-          <a href="#details" className="hover:text-green-600">Details</a>
-          <a href="#location" className="hover:text-green-600">Location</a>
-          <a href="#register" className="hover:text-green-600">Register</a>
-          <a href="#videos" className="hover:text-green-600">Highlights</a>
-          <a href="#sponsors" className="hover:text-green-600">Sponsors</a>
+          {combinedMenus.map((item, idx) =>
+            item.type === "link" ? (
+              <Link
+                key={idx}
+                to={item.to}
+                className="hover:text-green-600"
+              >
+                {item.label}
+              </Link>
+            ) : (
+              <a
+                key={idx}
+                href={item.href}
+                className="hover:text-green-600"
+              >
+                {item.label}
+              </a>
+            )
+          )}
         </div>
 
         {/* Mobile Menu Button */}
@@ -41,46 +75,29 @@ function Header() {
       {/* Mobile Dropdown */}
       {open && (
         <div className="md:hidden bg-white border-t shadow">
-          <a
-            href="#details"
-            className="block px-6 py-3 border-b hover:bg-gray-100"
-            onClick={() => setOpen(false)}
-          >
-            Details
-          </a>
-          <a
-            href="#location"
-            className="block px-6 py-3 border-b hover:bg-gray-100"
-            onClick={() => setOpen(false)}
-          >
-            Location
-          </a>
-          <a
-            href="#register"
-            className="block px-6 py-3 border-b hover:bg-gray-100"
-            onClick={() => setOpen(false)}
-          >
-            Register
-          </a>
-          <a
-            href="#videos"
-            className="block px-6 py-3 border-b hover:bg-gray-100"
-            onClick={() => setOpen(false)}
-          >
-            Highlights
-          </a>
-          <a
-            href="#sponsors"
-            className="block px-6 py-3 hover:bg-gray-100"
-            onClick={() => setOpen(false)}
-          >
-            Sponsors
-          </a>
+          {combinedMenus.map((item, idx) =>
+            item.type === "link" ? (
+              <Link
+                key={idx}
+                to={item.to}
+                className="block px-6 py-3 border-b hover:bg-gray-100"
+                onClick={() => setOpen(false)}
+              >
+                {item.label}
+              </Link>
+            ) : (
+              <a
+                key={idx}
+                href={item.href}
+                className="block px-6 py-3 border-b hover:bg-gray-100"
+                onClick={() => setOpen(false)}
+              >
+                {item.label}
+              </a>
+            )
+          )}
         </div>
       )}
     </header>
   );
 }
-
-
-export default Header

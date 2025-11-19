@@ -5,11 +5,25 @@ import './App.css'
 import axios from "axios";
 import Header from './components/Header';
 import RegistrationForm from './components/RegistrationSection';
-
+import NavBar from './components/NavBar';
+import { href } from 'react-router-dom';
 export default function App() {
+  const pageMenus = [{
+    href: '#details',
+    label: 'Details'
+  }, {
+    href: '#location',
+    label: 'Location'
+  }, {
+    href: '#videos',
+    label: 'Highlights'
+  }, {
+    href: '#sponsors',
+    label: 'Sponsors'
+  }]
   return (
     <div className="font-sans text-gray-800">
-      <Header />
+      <Header pageMenus={pageMenus} />
       {/* HERO */}
       <section
         className="h-[85vh] bg-cover bg-center flex items-center justify-center text-white mt-20"
