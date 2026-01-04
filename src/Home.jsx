@@ -80,7 +80,7 @@ export default function Home() {
           <div className="aspect-video">
             <iframe
               className="w-full h-full rounded-xl shadow"
-              src="https://www.youtube.com/embed/5KJ__06kyxs"
+              src="https://www.youtube.com/embed/0XAaGJ5uNWY"
               title="Golf Highlight Video"
               allowFullScreen
             ></iframe>
