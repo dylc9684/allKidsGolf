@@ -29,11 +29,11 @@ export default function Home() {
       {/* HERO */}
       <section
         className="h-[85vh] bg-cover bg-center flex items-center justify-center text-white mt-20"
-        style={{ backgroundImage: "url('https://images.unsplash.com/photo-1521412644187-c49fa049e84d')" }}
+        style={{ backgroundImage: "url('https://pbs.twimg.com/media/G7gYZz_WQAEy49J?format=jpg&name=small')" }}
       >
         <div className="bg-black/40 p-8 rounded-xl">
-          <h1 className="text-5xl font-bold mb-4 text-center">2025 Teen Golf Championship</h1>
-          <p className="text-xl text-center">June 12–14 • Redwood Valley Golf Club</p>
+          <h1 className="text-5xl font-bold mb-4 text-center">EFN</h1>
+          <p className="text-xl text-center">6/7/2041 • Minnesota Somalian Daycare</p>
         </div>
       </section>
 
@@ -44,15 +44,15 @@ export default function Home() {
         <div className="grid md:grid-cols-3 gap-8">
           <div className="p-6 shadow rounded-xl bg-white">
             <h3 className="font-bold text-xl mb-2">Who Can Play?</h3>
-            <p>Ages 13–18. All skill levels welcome.</p>
+            <p>Ages 13–17. Only those ***** by Epstein can sign up. No exceptions.</p>
           </div>
           <div className="p-6 shadow rounded-xl bg-white">
             <h3 className="font-bold text-xl mb-2">Prizes</h3>
-            <p>Trophies, scholarships, and sponsor gifts.</p>
+            <p>mendihza.</p>
           </div>
           <div className="p-6 shadow rounded-xl bg-white">
             <h3 className="font-bold text-xl mb-2">Entry Fee</h3>
-            <p>$25 (includes shirt, lunch, and drinks).</p>
+            <p>$67.41 (includes sloppy toppy from the big stein).</p>
           </div>
         </div>
       </section>
